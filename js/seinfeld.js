@@ -5,7 +5,7 @@ function sleep(ms) {
 const centre_x = $(window).width() / 2;
 const centre_y = $(window).height() / 2;
 const count = 30;
-const scale = 170;
+let scale = 140;
 let colours = ["#00FF00", "#FFFF00", "#FF7F00", "#FF0000"]
 
 let mouseX = centre_x;
@@ -20,6 +20,8 @@ function generate_img(){
 }
 
 async function move_img(){
+    let zoom_direction = false; // false for out, true for in
+    let loop_count = 0;
     while(true) {
         if (started) {
             let width = $("#pic" + count).width();
@@ -43,9 +45,20 @@ async function move_img(){
                 height += scale;
                 top -= scale / 2 + Math.sin(angle) * 30;
                 left -= scale / 2 + Math.cos(angle) * 30;
+                if (zoom_direction === false) {
+                    scale += 1;
+                } else {
+                    scale -= 1;
+                }
             }
         }
-        await sleep(66);
+        await sleep(99);
+        if(started) {
+            loop_count += 1;
+            if (loop_count % 10 === 0) {
+                zoom_direction = !zoom_direction;
+            }
+        }
     }
 }
 
