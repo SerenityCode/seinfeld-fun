@@ -54,6 +54,13 @@ $(document).ready(function() {
         mouseX = e.pageX;
         mouseY = e.pageY;
     }).mouseover();
+
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        let touch = e.touches[0];
+        mouseX = touch.pageX;
+        mouseY = touch.pageY;
+    }, false);
     $(document).click(function(e) {
         if(started !== true) {
             let track = new Audio("audio/theme.mp3");
