@@ -61,6 +61,19 @@ $(document).ready(function() {
         mouseX = touch.pageX;
         mouseY = touch.pageY;
     }, false);
+
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    }, false);
+
+    document.addEventListener('touchend', function(e) {
+        e.preventDefault();
+    }, false);
+
+    document.addEventListener('touchcancel', function(e) {
+        e.preventDefault();
+    }, false);
+
     $(document).click(function(e) {
         if(started !== true) {
             let track = new Audio("audio/theme.mp3");
